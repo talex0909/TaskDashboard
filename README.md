@@ -72,4 +72,4 @@ After creating the user, you can exit Tinker by typing:
 exit
 ```
 
-Now you should be ready to use your Laravel application!
+Now you should be ready to use your Laravel application!!
