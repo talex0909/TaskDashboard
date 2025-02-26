@@ -17,4 +17,9 @@ class LoginController extends Controller
         }
         return redirect()->back()->withErrors('Credentiale invalide');
     }
+
+    public function logout(){
+        Auth::logout();
+        return redirect("login");
+    }
 }

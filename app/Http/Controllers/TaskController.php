@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
 
 class TaskController extends Controller
 {
@@ -14,6 +15,8 @@ class TaskController extends Controller
     public function index()
     {
         $tasks=Task::all();
+        $tasks=Auth::user()->tasks;
+
         return view('tasks.index')->with(['tasks'=>$tasks]);
     }
 
@@ -30,7 +33,17 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        $new_task = $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'priority'=>'required',
+            'deadline'=>'required'
+
+        ]);
+        $new_task['notes'] = $request->notes;
+        $new_task['user_id'] = Auth::user()->id;
+        Task::create($new_task);
+        return redirect(route("tasks.index"));
     }
 
     /**
@@ -38,7 +51,7 @@ class TaskController extends Controller
      */
     public function show(Task $task)
     {
-        //
+       return view('tasks.show')->with(['task'=>$task]);
     }
 
     /**

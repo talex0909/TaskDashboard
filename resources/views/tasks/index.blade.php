@@ -59,9 +59,11 @@
                         @endswitch
                     </div>
                 </td>
-                <td class="px-6 py-4">
+                <td class="px-6 flex flex-col">
                     <!-- Modal toggle -->
                     <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
+                    
+                    <a href="{{route('tasks.show',$task)}}" type="button"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View Task</a>
                 </td>
             </tr>
             @endforeach
