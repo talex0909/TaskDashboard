@@ -59,7 +59,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('tasks.create')->with(['task'=>$task]);
     }
 
     /**
@@ -67,7 +67,16 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $task_update = $request->validate([
+            'title'=>'required',
+            'description'=>'required',
+            'priority'=>'required',
+            'deadline'=>'required'
+        ]);
+        $task_update['notes'] = $request->notes;
+        $task->update($task_update);
+        return redirect(route("tasks.show",$task));
+
     }
 
     /**
@@ -75,6 +84,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->back();
     }
 }

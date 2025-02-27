@@ -11,6 +11,11 @@ Route::get('/tasks', [TaskController::class, 'index'])->middleware('auth')->name
 Route::get('/tasks/add', [TaskController::class, 'create'])->middleware('auth')->name('tasks.create');
 Route::get('/tasks/{task}', [TaskController::class, 'show'])->middleware('auth')->name('tasks.show');
 Route::post('/tasks/add', [TaskController::class, 'store'])->middleware('auth')->name('tasks.store');
+Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->middleware('auth')->name('tasks.edit');
+Route::post('/tasks/{task}/edit', [TaskController::class, 'update'])->middleware('auth')->name('tasks.update');
+Route::delete('/tasks/{task}/delete', [TaskController::class, 'destroy'])->middleware('auth')->name('tasks.delete');
+
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');

@@ -61,9 +61,15 @@
                 </td>
                 <td class="px-6 flex flex-col">
                     <!-- Modal toggle -->
-                    <a href="#" type="button" data-modal-target="editUserModal" data-modal-show="editUserModal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit user</a>
+                    <a href="{{route('tasks.edit',$task)}}" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Task</a>
                     
-                    <a href="{{route('tasks.show',$task)}}" type="button"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View Task</a>
+                    <a href="{{route('tasks.show',$task)}}" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View Task</a>
+                    <form action="{{route('tasks.delete',$task)}}" method="post" >  
+                        @csrf
+                        @method('delete')
+                        <input type="submit" class="font-medium text-red-600 dark:text-red-500 hover:underline" value="Delete Task">
+                    </form>
+
                 </td>
             </tr>
             @endforeach
