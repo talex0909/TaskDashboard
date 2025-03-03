@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
+use App\Models\UserType;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
@@ -45,6 +45,11 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class,'user_type_id');
+    }
 
     public function tasks(){
         return $this->hasMany(Task::class);
@@ -59,4 +64,6 @@ class User extends Authenticatable
     {
         return $this->roles()->where('name', $role)->exists();
     }
+
+
 }

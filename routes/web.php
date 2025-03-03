@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\UserController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +16,9 @@ Route::post('/tasks/add', [TaskController::class, 'store'])->middleware('auth')-
 Route::get('/tasks/{task}/edit', [TaskController::class, 'edit'])->middleware('auth')->name('tasks.edit');
 Route::post('/tasks/{task}/edit', [TaskController::class, 'update'])->middleware('auth')->name('tasks.update');
 Route::delete('/tasks/{task}/delete', [TaskController::class, 'destroy'])->middleware('auth')->name('tasks.delete');
+
+
+Route::get('/users/{user}', [UserController::class, 'profile'])->middleware('auth')->name('users.profile');
 
 
 Route::get('/login', function () {
