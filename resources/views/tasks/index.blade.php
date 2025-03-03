@@ -25,8 +25,12 @@
                     Status
                 </th>
                 <th scope="col" class="px-6 py-3">
+                    Deadline
+                </th>
+                <th scope="col" class="px-6 py-3">
                     Action
                 </th>
+                
             </tr>
         </thead>
         <tbody>
@@ -59,6 +63,9 @@
                         @endswitch
                     </div>
                 </td>
+                 <td class="px-6 py-4">
+                    {{$task->deadline}}
+                </td>
                 <td class="px-6 flex flex-col">
                     <!-- Modal toggle -->
                     <a href="{{route('tasks.edit',$task)}}" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit Task</a>
@@ -71,6 +78,7 @@
                     </form>
 
                 </td>
+            
             </tr>
             @endforeach
         </tbody>
